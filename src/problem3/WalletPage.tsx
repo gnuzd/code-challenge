@@ -63,7 +63,7 @@ const WalletPage: React.FC<Props> = (props: Props) => {
 
         return rightPriority > leftPriority ? 1 : -1;
       });
-  }, [balances, prices]);
+  }, [balances]); // remove unnecessary dependencies 
 
   // const formattedBalances = sortedBalances.map((balance: WalletBalance) => {
   //   return {
@@ -88,21 +88,6 @@ const WalletPage: React.FC<Props> = (props: Props) => {
   // );
   //
   // return <div {...rest}>{rows}</div>;
-
-  const rows = sortedBalances.map(
-    (balance: FormattedWalletBalance, index: number) => {
-      const usdValue = prices[balance.currency] * balance.amount;
-      return (
-        <WalletRow
-          className={classes.row}
-          key={index}
-          amount={balance.amount}
-          usdValue={usdValue}
-          formattedAmount={balance.formatted}
-        />
-      );
-    },
-  );
 
   return (
     <div {...rest}>
